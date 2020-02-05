@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <title>Clousures</title>
+</head>
+
+<body>
+    <p><a href="index.html">volver al inicio</a></p>
+    <script>
+        // Global Scope
+        var message = "Hello,Platzi";
+        var $ = function(message) {
+            console.log("Say:" + message)
+        }
+
+        // function Scope
+        /*         
+        function printNumbers() {
+                    for (var i = 0; i < 10; i++) {
+                        function eventuallyPrintNumber(n) {
+                            setTimeout(function() {
+                                console.log(n);
+                            }, 100);
+                        }
+
+                        eventuallyPrintNumber(i);
+                    }
+                }
+
+         printNumbers(); 
+        */
+
+        function printNumbers2() {
+            // let opera sobre el block scope
+            // cada iteracion del loop crea un block scope
+            for (let i = 0; i < 10; i++) {
+                setTimeout(function() {
+                    console.log(i);
+                }, 100);
+            }
+        }
+
+        printNumbers2();
+
+        // Module scope
+    </script>
+</body>
+
+</html>

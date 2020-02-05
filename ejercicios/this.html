@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <title>Clousures</title>
+</head>
+
+<body>
+    <p><a href="index.html">volver al inicio</a></p>
+    <script>
+        // *** scope global
+        console.log(`this se refiere a ${this}`);
+
+        // *** scope function
+        function whoIsThis() {
+            return this;
+        }
+
+        // Nos dira que this es un objeto window siempre que usemos this de forma global
+        // el browser lo va a asiganar a Window
+        console.log(`whoIsThis(): ${whoIsThis()} `);
+
+        //  Modo estricto
+        function whoIsThisStrict() {
+            "use strict"
+            return this;
+        }
+
+        console.log(`whoIsThis(): ${whoIsThisStrict()} `);
+        // whoIsThis(): undefined  :O
+
+        // *** this en el contexto de un objeto
+        const person = {
+            name: 'Gabriel',
+            saludar: function() {
+                console.log(`Hola soy ${this.name}`);
+            }
+        }
+
+        person.saludar();
+
+        // *** this cuando sacamos una funcion de un objeto
+        const accion = person.saludar;
+        accion();
+
+        // *** thisc en el contexto de una clase
+        function Person(name) {
+            this.name = name;
+        }
+
+        Person.prototype.saludar = function() {
+            console.log(`Me llamo ${this.name}`);
+        }
+
+        const angela = new Person("Angela");
+        angela.saludar();
+    </script>
+</body>
+
+</html>

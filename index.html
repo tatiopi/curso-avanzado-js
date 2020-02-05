@@ -21,29 +21,7 @@
         <button id="muteButton">Mute/Unmute</button>
     </main>
 
-    <script>
-        const video = document.querySelector("video");
-        const button = document.querySelector("button");
-
-        function MediaPlayer(config) {
-            // config.el es la etiqueta video que hemos recogido 
-            // usando querySelector
-            this.media = config.el;
-        }
-
-        MediaPlayer.prototype.play = function() {
-            this.media.play();
-        }
-
-        // creamos una instancia de nuesrta clase
-        // y le pasamos como parametro el elemento
-        // video de nuesrto HTML
-        const player = new MediaPlayer({
-            el: video
-        });
-
-        button.onclick = () => player.play();
-    </script>
+    <script type="module" src="assets/index.js"></script>
 
 </body>
 
