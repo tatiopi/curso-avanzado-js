@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <title>Call , Apply y Bind</title>
+</head>
+
+<body>
+    <p><a href="index.html">volver al inicio</a></p>
+
+    <ul>
+        <li><button class="call-to-action">Aprender</button></li>
+        <li><button class="call-to-action">Aprender mas</button></li>
+        <li><button class="call-to-action">!Nunca pares de aprender</button></li>
+    </ul>
+
+    <script>
+        // ** Establece `this` usando `call`
+        function saludar() {
+            console.log(`Hola soy ${this.name} ${this.apellido}`);
+        }
+
+        const richard = {
+            name: "Richard",
+            apellido: "Kaufman Lopez"
+        }
+
+        saludar.call(richard);
+
+        // ** Establece `this` usando `call` y pasandole argumentos
+
+        function caminar(metros, direccion) {
+            console.log(`${this.name} camina ${metros} metros hacia ${direccion}`);
+        }
+
+        caminar.call(richard, 100, 'norte');
+
+        // ** Establece `this` usando `apply` y pasandole argumentos
+        const valores = [800, 'noreste'];
+        caminar.apply(richard, valores);
+
+        /*
+            Call - comma
+            Apply - Arreglo
+        */
+
+        // ** Establece `this` usando `bind` y pasandole argumentos
+        // Las formas anterioes ejecutn la funcion pero este no.
+
+        const daniel = {
+            name: 'Daniel',
+            apellido: 'Sanchez'
+        }
+
+        const danielSaluda = saludar.bind(daniel);
+        danielSaluda();
+
+        const danielCamina = caminar.bind(daniel, 2000, 'sur');
+        danielCamina();
+
+        const danielCaminaParcial = caminar.bind(daniel, 2000);
+        danielCaminaParcial('este');
+
+        const buttons = document.getElementsByClassName("call-to-action");
+        // buttons.array.forEach(button => {
+        //     button.onclick = () => alert('nunca pares de aprender');
+        // });
+
+        Array.prototype.forEach.call(buttons, button => {
+            button.onclick = () => alert('nunca pares de aprender');
+        });
+    </script>
+</body>
+
+</html>
