@@ -54,23 +54,91 @@
         // link.saludar();
 
 
+        // function Hero(name) {
+        //     const hero = {
+        //         name: name
+        //     }
+
+        //     // esta funcion la estamos llamando cada vez que llamos a Hero
+        //     hero.saludar = function() {
+        //         console.log(`Hola soy ${this.name}`)
+        //     }
+
+        //     return hero;
+        // }
+
+        // const zelda = Hero("Zelda");
+        // zelda.saludar();
+
+        // const link = Hero("Link");
+        // link.saludar();
+
+        // ****** Object.create;
+
+        // const heroMethods = {
+        //     saludar: function() {
+        //         console.log(`Soy superheroe! ${this.name}`)
+        //     },
+        // };
+
+        // function Hero(name) {
+        //     const hero = Object.create(heroMethods);
+
+        //     hero.name = name;
+
+        //     // esta funcion la estamos llamando cada vez que llamos a Hero
+        //     hero.saludar = function() {
+        //         console.log(`Hola soy ${this.name}`)
+        //     }
+
+        //     return hero;
+        // }
+
+        // const zelda = Hero("Zelda");
+        // zelda.saludar();
+
+        // const link = Hero("Link");
+        // link.saludar();
+
+
+        // const heroMethods = {
+        //     saludar: function() {
+        //         console.log(`Soy superheroe! ${this.name}`)
+        //     },
+        // };
+
+        // function Hero(name) {
+        //     const hero = Object.create(Hero.prototype);
+
+        //     hero.name = name;
+        //     return hero;
+        // }
+
+        // Hero.prototype.saludar = function() {
+        //     console.log(`Hola soy ${this.name}`)
+        // }
+
+        // const zelda = Hero("Zelda");
+        // zelda.saludar();
+
+        // const link = Hero("Link");
+        // link.saludar();
+
+        //********* Usando new ******** //
+
         function Hero(name) {
-            const hero = {
-                name: name
-            }
-
-            // esta funcion la estamos llamando cada vez que llamos a Hero
-            hero.saludar = function() {
-                console.log(`Hola soy ${this.name}`)
-            }
-
-            return hero;
+            //const hero = Object.create(Hero.prototype);
+            this.name = name;
         }
 
-        const zelda = Hero("Zelda");
+        Hero.prototype.saludar = function() {
+            console.log(`New ${this.name}`)
+        }
+
+        const zelda = new Hero("Zelda");
         zelda.saludar();
 
-        const link = Hero("Link");
+        const link = new Hero("Link");
         link.saludar();
     </script>
 </body>
