@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Prototype</title>
+</head>
+
+<body>
+    <p><a href="index.html">volver al inicio</a></p>
+    <script>
+        function Hero(name) {
+            this.name = name;
+        }
+
+        Hero.prototype.saludar = function() {
+            console.log(`New ${this.name}`)
+        }
+
+        const zelda = new Hero("Zelda");
+
+        // propiedades de la instancia
+        console.log('Name : ', zelda);
+        // propeiedades de la "clase"
+        console.log('Saludar : ', zelda.saludar);
+        // propiedades heredadas ej : toString
+        console.log('toString : ', zelda.toString);
+
+        // hasOwnProperty (es propio del objeto o hereda)
+        console.log('zelda.hasOwnProperty("Name")', zelda.hasOwnProperty('saludar'));
+
+        let prototypeOfZelda = Object.getPrototypeOf(zelda);
+        console.log('prototypeOfZelda : ', prototypeOfZelda);
+    </script>
+</body>
+
+</html>
