@@ -1,7 +1,7 @@
 # Apuntes de GIT
 
-``` JAVASCRIPT
- git reset 'commit' --hard
-```
+|comando|descripcion|
+|git reset 'commit' --hard| Volver a un commit especifico
 
-Volver a un commit especifico 
+
+
