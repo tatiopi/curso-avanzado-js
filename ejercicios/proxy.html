@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Proxies</title>
+    <script src="https://unpkg.com/fast-levenshtein@2.0.6/levenshtein.js"></script>
+</head>
+
+<body>
+    <p><a href="index.html">volver al inicio</a></p>
+    <script>
+        // target : objecto a interceptar
+        // handler : objeto que tiene definida varias trampas
+        // https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler
+        const target = {
+            red: 'Rojo',
+            green: 'Verde',
+            blue: 'Azul'
+        }
+
+        const handler = {
+            get(obj, prop) {
+                // comprobar que exista una propiedad en un objeto!
+                if (prop in obj) {
+                    return obj[prop];
+                }
+
+                // en el objeto target , cual es la llave que mas se parece al objeto
+                // que esta buscando el usuario
+                const suggestion = Object.keys(obj).find(key => {
+                    return Levenshtein.get(key, prop) <= 3
+                })
+
+                if (suggestion) {
+                    console.log(`${prop} no se encontro quisiste decir ${suggestion}`);
+                }
+
+                return obj[prop];
+            }
+        }
+        const p = new Proxy(target, handler);
+    </script>
+</body>
+
+</html>
