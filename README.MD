@@ -1,5 +1,9 @@
 # Apuntes de GIT
 
+> git log --stat 
+
+* lista de ficheros modificados en cada commit 
+
 > git reset 'commit' --hard
 
-Volver a un commit especifico 
+*  volver a un commit especificado , cuidado borra el contenido.
