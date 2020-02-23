@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Abort-fetch</title>
+    <script src="https://unpkg.com/fast-levenshtein@2.0.6/levenshtein.js"></script>
+</head>
+
+<body>
+    <p><a href="index.html">volver al inicio</a></p>
+
+    <img id="huge-image" height="400" />
+
+    <button id="load">Load HUGE Image</button>
+    <button id="stop" disabled>Stop Fetching</button>
+
+    <script>
+        // network > no throttling , nos sirve para simular como funciona nuestra
+        // pagina usando conexiones mas lentas
+        let controller = new AbortController();
+        const url = 'https://images.pexels.com/photos/974470/nature-stars-milky-way-galaxy-974470.jpeg?q=100';
+        const img = document.getElementById('huge-image');
+        const loadButton = document.getElementById('load');
+        const stopButton = document.getElementById('stop');
+
+        function startLoading() {
+            loadButton.disabled = true;
+            loadButton.innerText = 'Loading...';
+            stopButton.disabled = false;
+        }
+
+        function stopLoading() {
+            loadButton.disabled = false;
+            loadButton.innerText = 'load HUGE image';
+            stopButton.disabled = true;
+        }
+
+        loadButton.onclick = async function() {
+            startLoading();
+
+            // La interfaz de AbortController representa un objeto que permite 
+            // cancelar una o mas solicitudes web cuando lo desee
+            try {
+                const response = await fetch(url, {
+                    signal: controller.signal
+                });
+                const blob = await response.blob();
+                const imgUrl = URL.createObjectURL(blob);
+                img.src = imgUrl;
+            } catch (err) {
+                console.log('Carga cancelada por el usuario')
+            }
+
+            stopLoading();
+        }
+
+        stopButton.onclick = function() {
+            controller.abort();
+            stopLoading();
+        }
+    </script>
+</body>
+
+</html>
